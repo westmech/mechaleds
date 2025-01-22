@@ -6,6 +6,8 @@ app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
+app.use('/gifs', express.static('public'))
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
