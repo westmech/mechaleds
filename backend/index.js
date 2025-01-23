@@ -26,10 +26,6 @@ app.use(
 
 const port = 3000
 
-app.get('/dome', (req, res) => {
-  res.sendFile(join(__dirname, 'dome.html'));
-});
-
 io.on('connection', (socket) => {
   console.log('a user connected');
   socket.on('disconnect', () => {
