@@ -10,19 +10,9 @@ const io = new Server(server);
 
 const port = 3000
 
-app.get('/', (req, res) => {
-  res.sendFile(join(__dirname, 'index.html'));
+app.get('/dome', (req, res) => {
+  res.sendFile(join(__dirname, 'dome.html'));
 });
-
-app.get("/prairies", (req, res) =>{
-    io.emit("led", "http://localhost:3000/gifs/prairies.gif");
-    res.send("sent prairies to led");
-})
-
-app.get("/rockies", (req, res) => {
-    io.emit("led", "http://localhost:3000/gifs/rockies.gif");
-    res.send("sent rockies to led");
-})
 
 io.on('connection', (socket) => {
   console.log('a user connected');
@@ -36,11 +26,14 @@ app.use(express.json())
 
 app.post('/rockies', (req, res) => {
    io.emit("led", "http://localhost:3000/gifs/rockies.gif");
+   console.log('emitting rockies')
    res.end()
 })
 
 app.post('/prairies', (req, res) => {
    io.emit("led", "http://localhost:3000/gifs/prairies.gif");
+  console.log('emitting prairies')
+
    res.end()
 })
 
