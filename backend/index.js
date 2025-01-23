@@ -2,11 +2,27 @@ const express  = require("express");
 const { createServer } = require('node:http');
 const { join } = require('node:path');
 const { Server } = require('socket.io');
-
+const cors = require('cors')
 
 const app = express()
 const server = createServer(app);
-const io = new Server(server);
+
+const io = new Server(server, {
+  cors: {
+    origin: "http://localhost:5173", // Frontend's origin
+    methods: ["GET", "POST"], // Allowed methods
+    credentials: true, // Allow credentials (cookies, headers, etc.)
+  },
+});
+
+// Middleware for handling CORS with Express
+app.use(
+  cors({
+    origin: "http://localhost:5173", // Frontend's origin
+    methods: ["GET", "POST"],
+    credentials: true, // Allow credentials
+  })
+);
 
 const port = 3000
 
@@ -25,13 +41,13 @@ io.on('connection', (socket) => {
 app.use(express.json())
 
 app.post('/rockies', (req, res) => {
-   io.emit("led", "http://localhost:3000/gifs/rockies.gif");
+   io.emit("dome", "http://localhost:3000/gifs/rockies.gif");
    console.log('emitting rockies')
    res.end()
 })
 
 app.post('/prairies', (req, res) => {
-   io.emit("led", "http://localhost:3000/gifs/prairies.gif");
+   io.emit("dome", "http://localhost:3000/gifs/prairies.gif");
   console.log('emitting prairies')
    res.end()
 })
