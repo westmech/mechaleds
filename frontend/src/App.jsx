@@ -1,4 +1,8 @@
 import './App.css'
+import {useState} from 'react'
+import { socket } from './socket';
+
+
 import { Link } from "react-router";
 
 function App() {

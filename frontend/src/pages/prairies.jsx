@@ -2,7 +2,7 @@ import React from 'react'
 
 function Prairies() {
   return (
-    <div>Badlands</div>
+    <div>prairies</div>
   )
 }
 
