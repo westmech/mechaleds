@@ -33,7 +33,6 @@ app.post('/rockies', (req, res) => {
 app.post('/prairies', (req, res) => {
    io.emit("led", "http://localhost:3000/gifs/prairies.gif");
   console.log('emitting prairies')
-
    res.end()
 })
 
