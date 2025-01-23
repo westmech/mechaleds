@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Example GIF</title>
+  <style>
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <img src="http://localhost:3000/gifs/rockies.gif" alt="LED GIF">
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  const socket = io();
+  const imgElement = document.querySelector('img');
+
+  socket.on('led', (msg) => {
+
+    if(msg && imgElement){
+      imgElement.src = msg;
+      console.log("set led to: ", msg)
+    }
+    else{
+      console.log("failed to set: ", msg)
+    }
+  });
+
+
+</script>
+</body>
+</html>
