@@ -1,4 +1,3 @@
-
 const express  = require("express");
 const { createServer } = require('node:http');
 const { join } = require('node:path');
@@ -8,8 +7,6 @@ const { Server } = require('socket.io');
 const app = express()
 const server = createServer(app);
 const io = new Server(server);
-
-app.use(express.json())
 
 const port = 3000
 
@@ -35,9 +32,16 @@ io.on('connection', (socket) => {
 });
 
 
+app.use(express.json())
+
 app.post('/rockies', (req, res) => {
-  console.log("req", req.body)
-  res.send('Hello World!')
+   io.emit("led", "http://localhost:3000/gifs/rockies.gif");
+   res.end()
+})
+
+app.post('/prairies', (req, res) => {
+   io.emit("led", "http://localhost:3000/gifs/prairies.gif");
+   res.end()
 })
 
 app.use('/gifs', express.static('public'))
