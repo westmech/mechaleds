@@ -6,6 +6,13 @@ app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
+app.use(express.json())
+
+app.post('/rockies', (req, res) => {
+  console.log("req", req.body)
+  res.send('Hello World!')
+})
+
 app.use('/gifs', express.static('public'))
 
 app.listen(port, () => {
