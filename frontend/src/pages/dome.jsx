@@ -1,8 +1,10 @@
 import {useState, useEffect} from 'react'
 import {useSocket} from "../providers/SocketContext.jsx";
+import background from "../../public/background.png"
 
 function Dome() {
-  const [led1, setLed1] = useState("http://localhost:3000/gifs/rockies.gif")
+
+  const [led1, setLed1] = useState("http://localhost:3000/gifs/countdown.gif")
   const [led2, setLed2] = useState("http://localhost:3000/gifs/rockies.gif")
 
   const socket = useSocket();
@@ -10,19 +12,27 @@ function Dome() {
   useEffect(() => {
     if (!socket) return;
 
-    // Listen for messages from the server
-    socket.on('dome', (url) => {
+    socket.on('dome ab_innovates', (url) => {
       setLed1(url);
     });
 
-    // Cleanup the event listener on unmount
+    socket.on('dome gov_ab', url => {
+      setLed2(url)
+    })
+
     return () => {
-      socket.off('dome');
+      socket.off('dome ab_innovates');
+      socket.off('dome gov_ab')
     };
   }, [socket]);
 
   return (
     <div>
+      <img src={background} style={{position: "absolute", top: 0, left: 0}} alt="background for led1"/>
+      <img src={background} style={{position: "absolute", top: 200, left: 0}} alt="background for led2"/>
+      <h1 style={{position: 'absolute', top: 0, left: 1500}}> AB innovates </h1>
+      <h1 style={{position: 'absolute', top: 200, left: 1500}}> GOV AB </h1>
+
       <img src={led1} style={{position: "absolute", top: 0, left: 0}} alt="led 1"/>
       <img src={led2} style={{position: "absolute", top: 200, left: 0}} alt="led 2"/>
 

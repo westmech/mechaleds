@@ -3,6 +3,8 @@ const { createServer } = require('node:http');
 const { join } = require('node:path');
 const { Server } = require('socket.io');
 const cors = require('cors')
+const domeRoutes = require('./domeRoutes')
+
 
 const app = express()
 const server = createServer(app);
@@ -36,17 +38,7 @@ io.on('connection', (socket) => {
 
 app.use(express.json())
 
-app.post('/rockies', (req, res) => {
-   io.emit("dome", "http://localhost:3000/gifs/rockies.gif");
-   console.log('emitting rockies')
-   res.end()
-})
-
-app.post('/prairies', (req, res) => {
-   io.emit("dome", "http://localhost:3000/gifs/prairies.gif");
-  console.log('emitting prairies')
-   res.end()
-})
+app.use('/dome', domeRoutes(io));
 
 app.use('/gifs', express.static('public'))
 
