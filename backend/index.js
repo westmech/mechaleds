@@ -28,6 +28,8 @@ app.use(
 
 const port = 3000
 
+const baseUrl = "http://localhost:" + port.toString()
+
 io.on('connection', (socket) => {
   console.log('a user connected');
   socket.on('disconnect', () => {
@@ -38,7 +40,7 @@ io.on('connection', (socket) => {
 
 app.use(express.json())
 
-app.use('/dome', domeRoutes(io));
+app.use('/dome', domeRoutes(io, baseUrl));
 
 app.use('/gifs', express.static('public'))
 

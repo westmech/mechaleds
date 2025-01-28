@@ -1,36 +1,35 @@
 const express = require("express");
+const led1 = "ab_innovates"
+const led2 = "gov_ab"
+const leds = [led1, led2]
 
-function domeRoutes(io) {
+function domeRoutes(io, baseUrl) {
   const router = express.Router();
 
+
   router.post('/default', (req, res) => {
-    io.emit("dome ab_innovates", "http://localhost:3000/gifs/0_ab_innovates.gif");
-    io.emit("dome gov_ab", "http://localhost:3000/gifs/0_gov_ab.gif");
+    leds.map((led) => {
+      io.emit(led, baseUrl + "/gifs/" + led + ".gif");
+    });
     console.log('emitting default on DOME');
     res.end();
   });
 
-  router.post('/ab_innovates/countdown', (req, res) => {
-    io.emit("dome ab_innovates", "http://localhost:3000/gifs/countdown.gif");
-    console.log('emitting countdown on ab_innovates');
-    res.end();
-  });
+  // requests for each led
+  leds.map((led) => {
+    console.log("led", led)
 
-  router.post('/ab_innovates/default', (req, res) => {
-    io.emit("dome ab_innovates", "http://localhost:3000/gifs/0_ab_innovates.gif");
-    res.end();
-  });
+    router.post("/" + led + '/countdown', (req, res) => {
+      io.emit(led, baseUrl + "/gifs/countdown.gif");
+      console.log('emitting countdown on ' + led);
+      res.end();
+    });
 
-  router.post('/gov_ab/countdown', (req, res) => {
-    io.emit("dome gov_ab", "http://localhost:3000/gifs/countdown.gif");
-    console.log('emitting countdown on gov_ab');
-    res.end();
-  });
-
-
-  router.post('/gov_ab/default', (req, res) => {
-    io.emit("dome gov_ab", "http://localhost:3000/gifs/0_gov_ab.gif");
-    res.end();
+    router.post("/" + led + '/default', (req, res) => {
+      io.emit(led, baseUrl + "/gifs/" + led + ".gif");
+      console.log('emitting default on ' + led);
+      res.end();
+    });
   });
 
   return router;

@@ -2,6 +2,8 @@ import {useState, useEffect} from 'react'
 import {useSocket} from "../providers/SocketContext.jsx";
 import background from "../../public/background.png"
 
+
+
 function Dome() {
 
   const [led1, setLed1] = useState("http://localhost:3000/gifs/countdown.gif")
@@ -12,17 +14,19 @@ function Dome() {
   useEffect(() => {
     if (!socket) return;
 
-    socket.on('dome ab_innovates', (url) => {
+    socket.on('ab_innovates', (url) => {
       setLed1(url);
+      return;
     });
 
-    socket.on('dome gov_ab', url => {
+    socket.on('gov_ab', url => {
       setLed2(url)
+      return;
     })
 
     return () => {
-      socket.off('dome ab_innovates');
-      socket.off('dome gov_ab')
+      socket.off('ab_innovates');
+      socket.off('gov_ab')
     };
   }, [socket]);
 
