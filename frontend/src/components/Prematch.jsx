@@ -10,15 +10,32 @@ const StyledLed = styled.div`
 
 const StyledPrematch = styled(StyledLed)`
     display: grid;
-    grid-template-columns: 1fr 2fr 1fr ;
+    grid-template-columns: 50px 1fr 2fr 1fr 50px ;
 `;
 
 const StyledTitle = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    background: red;
     font-size: 100px;
+`;
+
+const Ranks = styled.div`
+    font-size: 50px;
+    text-align: ${props => props.align};
+    background: white;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px 0px;
+`;
+const Teams = styled.div`
+    font-size: 70px;
+    text-align: ${props => props.align};
+    padding: 0 5px;
+    display: flex;
+    flex-direction: column;
 `;
 
 const Prematch =  () => {
@@ -29,9 +46,23 @@ const Prematch =  () => {
 
   return(
     <StyledPrematch>
-      <h1>210Y</h1>
+      <Ranks align={"center"}>
+        <div>1</div>
+        <div>12</div>
+      </Ranks>
+      <Teams align={"left"}>
+        <div>210</div>
+        <div>210</div>
+      </Teams>
       <StyledTitle>UP NEXT Q1</StyledTitle>
-      <h1>210y</h1>
+      <Teams align={"right"}>
+        <div>210</div>
+        <div>210</div>
+      </Teams>
+      <Ranks align={"center"}>
+        <div>10</div>
+        <div>12</div>
+      </Ranks>
     </StyledPrematch>
   );
 
