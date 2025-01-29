@@ -1,3 +1,12 @@
+
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+
+body {
+    font-family: "Bebas Neue", sans-serif;
+    color: white;
+    background-color: #121212; /* Optional: Set dark background */
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
