@@ -2,31 +2,28 @@ import {useState, useEffect} from 'react'
 import {useSocket} from "../providers/SocketContext.jsx";
 import background from "../../public/background.png"
 
-
-
 function Dome() {
-
-  const [led1, setLed1] = useState("http://localhost:3000/gifs/countdown.gif")
-  const [led2, setLed2] = useState("http://localhost:3000/gifs/rockies.gif")
+  const led1channel = "ab_innovates";
+  const led2channel = "gov_ab";
+  const [led1, setLed1] = useState("")
+  const [led2, setLed2] = useState("")
 
   const socket = useSocket();
 
   useEffect(() => {
     if (!socket) return;
 
-    socket.on('ab_innovates', (url) => {
+    socket.on(led1channel, (url) => {
       setLed1(url);
-      return;
     });
 
-    socket.on('gov_ab', url => {
+    socket.on(led2channel, url => {
       setLed2(url)
-      return;
     })
 
     return () => {
-      socket.off('ab_innovates');
-      socket.off('gov_ab')
+      socket.off(led1channel);
+      socket.off(led2channel)
     };
   }, [socket]);
 
@@ -34,8 +31,8 @@ function Dome() {
     <div>
       <img src={background} style={{position: "absolute", top: 0, left: 0}} alt="background for led1"/>
       <img src={background} style={{position: "absolute", top: 200, left: 0}} alt="background for led2"/>
-      <h1 style={{position: 'absolute', top: 0, left: 1500}}> AB innovates </h1>
-      <h1 style={{position: 'absolute', top: 200, left: 1500}}> GOV AB </h1>
+      <h1 style={{position: 'absolute', top: 0, left: 1500}}>{led1channel} </h1>
+      <h1 style={{position: 'absolute', top: 200, left: 1500}}> {led2channel} </h1>
 
       <img src={led1} style={{position: "absolute", top: 0, left: 0}} alt="led 1"/>
       <img src={led2} style={{position: "absolute", top: 200, left: 0}} alt="led 2"/>

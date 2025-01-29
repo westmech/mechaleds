@@ -10,7 +10,6 @@ import { SocketProvider } from './providers/SocketContext.jsx';
 
 
 import { BrowserRouter, Routes, Route } from "react-router";
-
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <SocketProvider>

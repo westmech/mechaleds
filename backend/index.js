@@ -4,7 +4,7 @@ const { join } = require('node:path');
 const { Server } = require('socket.io');
 const cors = require('cors')
 const domeRoutes = require('./domeRoutes')
-
+const prairiesRoutes = require('./prairiesRoutes')
 
 const app = express()
 const server = createServer(app);
@@ -41,6 +41,8 @@ io.on('connection', (socket) => {
 app.use(express.json())
 
 app.use('/dome', domeRoutes(io, baseUrl));
+app.use('/prairies', prairiesRoutes(io, baseUrl));
+
 
 app.use('/gifs', express.static('public'))
 
