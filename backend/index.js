@@ -45,6 +45,7 @@ app.use('/prairies', prairiesRoutes(io, baseUrl));
 
 
 app.use('/gifs', express.static('public'))
+app.use('/pngs', express.static('public'))
 
 server.listen(port, () => {
   console.log(`Example app listening on port ${port}`)

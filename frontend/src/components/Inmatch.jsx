@@ -5,18 +5,32 @@ import mqtt from 'mqtt'
 const StyledLed = styled.div`
     width: 1176px;
     height: 168px;
+    background: linear-gradient(
+        to right,
+        #209dec ${(props) => props.split || 50}%,
+        #ec1f34 ${(props) => props.split || 50}%
+    );
 `;
 
 const StyledPrematch = styled(StyledLed)`
     display: grid;
-    grid-template-columns: 50px 1fr 2fr 1fr 50px ;
+    grid-template-columns: 50px 1fr 3fr 1fr 50px ;
 `;
 
-const StyledTitle = styled.div`
+const CenterDiv = styled.div`
     display: flex;
-    justify-content: center;
-    align-items: start;
-    font-size: 50px;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+`;
+
+const Time = styled.div`
+  font-size: 60px;
+`;
+
+const Score =styled.div`
+    font-size: 100px;
+  
 `;
 
 const Ranks = styled.div`
@@ -37,13 +51,12 @@ const Teams = styled.div`
     flex-direction: column;
 `;
 
-const Prematch =  () => {
+const Inmatch =  () => {
   const [red1, setRed1] = useState("red1")
-  const client = mqtt.connect("wss://test.mosquitto.org:8081");
-  client.on("connect", () => {});
+  const split = 100
 
   return(
-    <StyledPrematch>
+    <StyledPrematch split={Math.min(65, (Math.max(35,split )))}>
       <Ranks align={"center"}>
         <div>14</div>
         <div>1</div>
@@ -52,7 +65,12 @@ const Prematch =  () => {
         <div>210X</div>
         <div>6659C</div>
       </Teams>
-      <StyledTitle>Q1</StyledTitle>
+      <CenterDiv>
+        <Score>100</Score>
+        <Time>2:00</Time>
+        <Score>100</Score>
+      </CenterDiv>
+
       <Teams align={"right"}>
         <div>210y</div>
         <div>99197H</div>
@@ -66,4 +84,4 @@ const Prematch =  () => {
 
 }
 
-export default Prematch
+export default Inmatch

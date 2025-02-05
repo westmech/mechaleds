@@ -1,14 +1,13 @@
 import {useState, useEffect} from 'react'
 import {useSocket} from "../providers/SocketContext.jsx";
-import background from "../../public/background.png"
 
 function Rockies() {
   const led1channel = "innovate_calgary";
   const led2channel = "tourism_calgary";
   const led3channel = "uofa";
-  const [led1, setLed1] = useState("")
-  const [led2, setLed2] = useState("")
-  const [led3, setLed3] = useState("")
+  const [led1, setLed1] = useState(null)
+  const [led2, setLed2] = useState(null)
+  const [led3, setLed3] = useState(null)
 
   const socket = useSocket();
 
@@ -36,17 +35,16 @@ function Rockies() {
 
   return (
     <div>
-      <img src={background} style={{position: "absolute", top: 0, left: 0}} alt="background for led1"/>
-      <img src={background} style={{position: "absolute", top: 200, left: 0}} alt="background for led2"/>
-      <img src={background} style={{position: "absolute", top: 400, left: 0}} alt="background for led3"/>
+      <img src={"/innovate_calgary.png"} style={{position: "absolute", top: 0, left: 0}} alt="background for led1"/>
+      <img src={"tourism_calgary.png"} style={{position: "absolute", top: 200, left: 0}} alt="background for led2"/>
+      <img src={"uofa.png"} style={{position: "absolute", top: 400, left: 0}} alt="background for led3"/>
       <h1 style={{position: 'absolute', top: 0, left: 1500}}>{led1channel} </h1>
       <h1 style={{position: 'absolute', top: 200, left: 1500}}> {led2channel} </h1>
       <h1 style={{position: 'absolute', top: 400, left: 1500}}> {led3channel} </h1>
 
-      <img src={led1} style={{position: "absolute", top: 0, left: 0}} alt="led 1"/>
-      <img src={led2} style={{position: "absolute", top: 200, left: 0}} alt="led 2"/>
-      <img src={led3} style={{position: "absolute", top: 400, left: 0}} alt="led 3"/>
-
+      <img src={led1} style={{position: "absolute", top: 0, left: 0}}/>
+      <img src={led2} style={{position: "absolute", top: 200, left: 0}}/>
+      <img src={led3} style={{position: "absolute", top: 400, left: 0}}/>
 
     </div>
   );

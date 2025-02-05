@@ -30,6 +30,12 @@ function domeRoutes(io, baseUrl) {
       console.log('emitting default on ' + led);
       res.end();
     });
+
+    router.post("/" + led + '/prematch', (req, res) => {
+      io.emit(led,  baseUrl + "/pngs/prematch.png");
+      console.log('emitting prematch on ' + led);
+      res.end();
+    });
   });
 
   return router;
