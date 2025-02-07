@@ -10,7 +10,7 @@ import { SocketProvider } from './providers/SocketContext.jsx';
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 
 const client = new ApolloClient({
-  uri: "http://10.196.4.70:35381/",
+  uri: "http://10.42.0.43:35381/",
   cache: new InMemoryCache(),
 });
 

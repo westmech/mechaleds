@@ -5,16 +5,25 @@ import "./Postmatch.css";
 const DASHBOARD_SUBSCRIPTION = gql`
   subscription OnDashboardUpdate {
     dashboardUpdate {
-      fieldId
-      displayState
-      displayName
-      displayClass
-      sponsorState
-      scoreRed
-      scoreBlue
-      teamsRed
-      teamsBlue
-      timer
+     AddMatch
+     AddTeam
+     Alliance
+     Division
+     Field
+     ID
+     LinkMatch
+     LinkTM
+     Match
+     MatchScore
+     MatchStatus
+     RemoveMatch
+     Score
+     String
+     TM
+     Team
+     UnlinkMatch
+     UnlinkTM
+     UpdateTM
     }
   }
 `;
