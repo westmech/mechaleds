@@ -5,9 +5,11 @@ function Rockies() {
   const led1channel = "innovate_calgary";
   const led2channel = "tourism_calgary";
   const led3channel = "uofa";
-  const [led1, setLed1] = useState(null)
-  const [led2, setLed2] = useState(null)
-  const [led3, setLed3] = useState(null)
+  const [led1, setLed1] = useState("vex.gif")
+  const [led2, setLed2] = useState("tc_energy.gif")
+  const [led3, setLed3] = useState("encore.gif")
+
+
 
   const socket = useSocket();
 
@@ -35,8 +37,8 @@ function Rockies() {
 
   return (
     <div>
-      <img src={"/innovate_calgary.png"} style={{position: "absolute", top: 0, left: 0}} alt="background for led1"/>
-      <img src={"tourism_calgary.png"} style={{position: "absolute", top: 200, left: 0}} alt="background for led2"/>
+      <img src={"/innovate_calgary.png"} style={{position: "absolute", top: 0, left: 0 }} alt="background for led1"/>
+      <img src={"tourism_calgary.png"} style={{position: "absolute", top: 170, left: 0}} alt="background for led2"/>
       <img src={"uofa.png"} style={{position: "absolute", top: 400, left: 0}} alt="background for led3"/>
       <h1 style={{position: 'absolute', top: 0, left: 1500}}>{led1channel} </h1>
       <h1 style={{position: 'absolute', top: 200, left: 1500}}> {led2channel} </h1>
